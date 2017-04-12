@@ -60,14 +60,41 @@ public class Life {
         boolean cellCurrentlyAlive = world[row][col];
 
         for(int r = -1; r <= 1; r++){
+            boolean checkedrow = false;
             int currentRow = row + r;
-            currentRow = (currentRow < 0)? size - 1: currentRow;
-            currentRow = (currentRow >= size)? 0 : currentRow;
+            //currentRow = (currentRow < 0)? size - 1: currentRow;
+            //currentRow = (currentRow >= size)? 0 : currentRow;
+            if(currentRow < 0){
+                currentRow = 0;
+                checkedrow = true;
+            }else{
+                currentRow = currentRow;
+            }
+            if(currentRow >= size){
+                currentRow = size - 1;
+                checkedrow = true;
+            }else{
+                currentRow = currentRow;
+            }
+
             for(int c = -1; c <= 1; c++){
+                boolean checkedcol = false;
                 int currentCol = col + c;
-                currentCol = (currentCol < 0)? size - 1: currentCol;
-                currentCol = (currentCol >= size)? 0 : currentCol;
-                if(world[currentRow][currentCol]){
+               // currentCol = (currentCol < 0)? size - 1: currentCol;
+                //currentCol = (currentCol >= size)? 0 : currentCol;
+                if(currentCol < 0){
+                    currentCol = 0;
+                    checkedcol = true;
+                }else{
+                    currentCol = currentCol;
+                }
+                if(currentCol >= size){
+                    currentCol = size - 1;
+                    checkedcol = true;
+                }else{
+                    currentCol = currentCol;
+                }
+                if(world[currentRow][currentCol] && !checkedrow && !checkedcol){
                     liveCount++;
                 }
             }
